@@ -4,7 +4,7 @@ data class HomeContent(
     val productSection: ProductSection,
     val articleSection: ArticleSection
 ) {
-    data class ProductSection(val products: List<Product>)
+    data class ProductSection(val items: List<Product>)
 
-    data class ArticleSection(val sectionTitle: String, val articles: List<Article>)
+    data class ArticleSection(val title: String, val items: List<Article>)
 }

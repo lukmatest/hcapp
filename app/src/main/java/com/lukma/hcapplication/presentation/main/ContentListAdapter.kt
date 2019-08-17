@@ -20,9 +20,9 @@ class ContentListAdapter(
         products.clear()
         articles.clear()
 
-        products.addAll(data.productSection.products)
-        articles.addAll(data.articleSection.articles)
-        articleSectionTitle = data.articleSection.sectionTitle
+        products.addAll(data.productSection.items)
+        articles.addAll(data.articleSection.items)
+        articleSectionTitle = data.articleSection.title
 
         notifyDataSetChanged()
     }
