@@ -79,5 +79,4 @@ dependencies {
 
 //    Common UI
     implementation 'com.google.android.material:material:1.0.0'
-    implementation 'com.facebook.shimmer:shimmer:0.4.0'
 }
