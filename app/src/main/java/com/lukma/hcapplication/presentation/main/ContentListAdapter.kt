@@ -14,16 +14,14 @@ class ContentListAdapter(
     private val products = mutableListOf<Product>()
     private val articles = mutableListOf<Article>()
 
-    fun addProducts(products: List<Product>) {
-        this.products.clear()
-        this.products.addAll(products)
-        notifyItemChanged(0)
-    }
+    fun submit(data: Pair<List<Product>, List<Article>>) {
+        products.clear()
+        articles.clear()
 
-    fun addArticles(articles: List<Article>) {
-        this.articles.clear()
-        this.articles.addAll(articles)
-        notifyItemRangeChanged(1, itemCount)
+        products.addAll(data.first)
+        articles.addAll(data.second)
+
+        notifyDataSetChanged()
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
@@ -35,7 +33,7 @@ class ContentListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is HeaderHolder -> holder.onBind(products)
-            is ArticleHolder -> holder.onBind(articles[position + 1])
+            is ArticleHolder -> articles.getOrNull(position + 1)?.run(holder::onBind)
         }
     }
 

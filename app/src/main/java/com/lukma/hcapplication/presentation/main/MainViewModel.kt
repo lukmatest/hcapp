@@ -11,12 +11,12 @@ import com.lukma.hcapplication.presentation.common.Resource
 import com.lukma.hcapplication.shared.asResource
 
 class MainViewModel(private val getHomeContentUseCase: GetHomeContentUseCase) : ViewModel() {
-    private val homeContentMutable = MutableLiveData<Resource<Pair<List<Product>, List<Article>>>>()
-    val homeContent: LiveData<Resource<Pair<List<Product>, List<Article>>>> = homeContentMutable
+    private val contentMutable = MutableLiveData<Resource<Pair<List<Product>, List<Article>>>>()
+    val content: LiveData<Resource<Pair<List<Product>, List<Article>>>> = contentMutable
 
     suspend fun getHomeContent() {
         getHomeContentUseCase.invoke(viewModelScope.coroutineContext)
             .asResource()
-            .run(homeContentMutable::postValue)
+            .run(contentMutable::postValue)
     }
 }
