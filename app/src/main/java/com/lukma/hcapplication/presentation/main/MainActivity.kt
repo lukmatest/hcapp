@@ -4,7 +4,6 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.browser.customtabs.CustomTabsIntent
-import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
@@ -29,9 +28,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             whenCreated {
                 viewModel.content.observe(this@MainActivity, Observer {
-                    val isLoading = it is Resource.Loading
-                    progressBar.isVisible = isLoading
-                    recyclerView.isVisible = !isLoading
+                    swipeRefresh.isRefreshing = it is Resource.Loading
                     when (it) {
                         is Resource.Success -> it.data.run(listAdapter::submit)
                         is Resource.Failure -> it.error.message?.run(::showSnackBar)
@@ -47,6 +44,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
+        swipeRefresh.setOnRefreshListener {
+            lifecycleScope.launch { viewModel.getHomeContent() }
+        }
         with(recyclerView) {
             layoutManager = LinearLayoutManager(this@MainActivity)
             addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_component_space_medium).toInt()))

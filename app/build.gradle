@@ -27,33 +27,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // Native
+    // Core
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$versions.kotlin"
+    implementation "androidx.core:core-ktx:$versions.android_core"
     testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test:runner:$versions.android_core"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
 
     // Koin
     implementation "org.koin:koin-android:$versions.koin"
     implementation "org.koin:koin-androidx-viewmodel:$versions.koin"
     implementation "org.koin:koin-androidx-ext:$versions.koin"
 
-    // Jetpack Foundation
-    implementation "androidx.core:core-ktx:$versions.android_core"
-    implementation "androidx.browser:browser:$versions.android_browser"
-    androidTestImplementation "androidx.test:runner:$versions.android_core"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
-
     // jetpack UI
-    implementation "androidx.appcompat:appcompat:$versions.android_core"
+    implementation "androidx.appcompat:appcompat:$versions.android_appcompat"
+    implementation "androidx.browser:browser:$versions.android_browser"
     implementation "androidx.constraintlayout:constraintlayout:$versions.constraint_layout"
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:$versions.swipe_refresh"
 
     // Jetpack Architecture
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
