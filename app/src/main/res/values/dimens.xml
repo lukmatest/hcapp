@@ -2,5 +2,5 @@
 <resources>
     <dimen name="default_thumbnail_height_small">50dp</dimen>
     <dimen name="default_thumbnail_height_medium">200dp</dimen>
-    <dimen name="default_component_margin_medium">8dp</dimen>
+    <dimen name="default_component_space_medium">8dp</dimen>
 </resources>
