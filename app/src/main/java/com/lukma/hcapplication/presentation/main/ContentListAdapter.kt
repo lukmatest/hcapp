@@ -14,6 +14,7 @@ class ContentListAdapter(
 
     private val products = mutableListOf<Product>()
     private val articles = mutableListOf<Article>()
+    private var articleSectionTitle = ""
 
     fun submit(data: HomeContent) {
         products.clear()
@@ -21,6 +22,7 @@ class ContentListAdapter(
 
         products.addAll(data.productSection.products)
         articles.addAll(data.articleSection.articles)
+        articleSectionTitle = data.articleSection.sectionTitle
 
         notifyDataSetChanged()
     }
@@ -33,7 +35,7 @@ class ContentListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is HeaderHolder -> holder.onBind(products)
+            is HeaderHolder -> holder.onBind(products, articleSectionTitle)
             is ArticleHolder -> articles.getOrNull(position - 1)?.run(holder::onBind)
         }
     }

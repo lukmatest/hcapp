@@ -12,13 +12,15 @@ import kotlinx.android.synthetic.main.main_header_item.view.*
 
 class HeaderHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private lateinit var onItemClicked: (Product) -> Unit
+
     private val recyclerView = itemView.recyclerView
+    private val sectionTextView = itemView.sectionTextView
 
     private fun onCreate(onItemClicked: (Product) -> Unit) {
         this.onItemClicked = onItemClicked
     }
 
-    fun onBind(items: List<Product>) {
+    fun onBind(products: List<Product>, articleSectionTitle: String) {
         with(recyclerView) {
             layoutManager = GridLayoutManager(itemView.context, 3)
             addItemDecoration(
@@ -27,8 +29,9 @@ class HeaderHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                     MarginItemDecoration.Mode.Grid(3)
                 )
             )
-            adapter = ProductListAdapter(items, onItemClicked)
+            adapter = ProductListAdapter(products, onItemClicked)
         }
+        sectionTextView.text = articleSectionTitle
     }
 
     companion object {
