@@ -11,7 +11,7 @@ import com.lukma.hcapplication.R
 import com.lukma.hcapplication.domain.content.Article
 import com.lukma.hcapplication.presentation.common.ImageRequestListener
 import com.lukma.hcapplication.presentation.module.GlideApp
-import kotlinx.android.synthetic.main.article_item.view.*
+import kotlinx.android.synthetic.main.main_article_item.view.*
 
 class ArticleHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private var item: Article? = null
@@ -43,7 +43,7 @@ class ArticleHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             ArticleHolder(
                 LayoutInflater
                     .from(parent.context)
-                    .inflate(R.layout.article_item, parent, false)
+                    .inflate(R.layout.main_article_item, parent, false)
             ).apply {
                 onCreate(onItemClicked)
             }
