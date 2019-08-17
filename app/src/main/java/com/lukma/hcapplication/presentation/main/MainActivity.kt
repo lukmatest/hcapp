@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             whenCreated {
                 viewModel.content.observe(this@MainActivity, Observer {
-                    progressBar.isVisible = it is Resource.Loading
+                    val isLoading = it is Resource.Loading
+                    progressBar.isVisible = isLoading
+                    recyclerView.isVisible = !isLoading
                     when (it) {
                         is Resource.Success -> it.data.run(listAdapter::submit)
                         is Resource.Failure -> it.error.message?.run(::showSnackBar)
