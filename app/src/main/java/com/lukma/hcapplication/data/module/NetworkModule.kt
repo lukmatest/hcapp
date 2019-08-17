@@ -30,16 +30,14 @@ val networkModule = module {
     single {
         val adapterFactory = PolymorphicJsonAdapterFactory
             .of(HomeContentResponse.Content::class.java, "section")
-            .apply {
-                withSubtype(
-                    HomeContentResponse.Content.ProductContent::class.java,
-                    HomeContentResponse.Section.PRODUCTS.value
-                )
-                withSubtype(
-                    HomeContentResponse.Content.ArticleContent::class.java,
-                    HomeContentResponse.Section.ARTICLES.value
-                )
-            }
+            .withSubtype(
+                HomeContentResponse.Content.ProductContent::class.java,
+                HomeContentResponse.Section.PRODUCTS.value
+            )
+            .withSubtype(
+                HomeContentResponse.Content.ArticleContent::class.java,
+                HomeContentResponse.Section.ARTICLES.value
+            )
 
         Moshi.Builder().apply {
             add(adapterFactory)
