@@ -33,7 +33,7 @@ class ContentListAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
             is HeaderHolder -> holder.onBind(products)
-            is ArticleHolder -> articles.getOrNull(position + 1)?.run(holder::onBind)
+            is ArticleHolder -> articles.getOrNull(position - 1)?.run(holder::onBind)
         }
     }
 

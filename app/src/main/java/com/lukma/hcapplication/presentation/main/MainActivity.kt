@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.lukma.hcapplication.R
 import com.lukma.hcapplication.presentation.common.MarginItemDecoration
 import com.lukma.hcapplication.presentation.common.Resource
+import com.lukma.hcapplication.shared.showSnackBar
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,6 +30,7 @@ class MainActivity : AppCompatActivity() {
                     progressBar.isVisible = it is Resource.Loading
                     when (it) {
                         is Resource.Success -> it.data.run(listAdapter::submit)
+                        is Resource.Failure -> it.error.message?.run(::showSnackBar)
                     }
                 })
             }
