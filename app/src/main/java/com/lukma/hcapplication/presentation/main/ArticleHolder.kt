@@ -4,9 +4,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
 import com.lukma.hcapplication.R
 import com.lukma.hcapplication.domain.content.Article
 import com.lukma.hcapplication.presentation.common.ImageRequestListener
@@ -20,10 +17,6 @@ class ArticleHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val progressBar = itemView.progressBar
     private val titleTextView = itemView.titleTextView
 
-    private val options = RequestOptions()
-        .placeholder(R.color.colorAccent)
-        .transform(CenterCrop(), RoundedCorners(16))
-
     private fun onCreate(onItemClicked: (Article) -> Unit) {
         itemView.setOnClickListener { item?.run(onItemClicked) }
     }
@@ -32,7 +25,6 @@ class ArticleHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         this.item = item
         GlideApp.with(itemView)
             .load(item.image)
-            .apply(options)
             .listener(ImageRequestListener(progressBar))
             .into(thumbnailImageView)
         titleTextView.text = item.title
