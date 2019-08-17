@@ -10,18 +10,17 @@ import com.lukma.hcapplication.domain.content.Product
 import kotlinx.android.synthetic.main.main_header_item.view.*
 
 class HeaderHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private lateinit var listAdapter: ProductListAdapter
+    private lateinit var onItemClicked: (Product) -> Unit
     private val recyclerView = itemView.recyclerView
 
     private fun onCreate(onItemClicked: (Product) -> Unit) {
-        listAdapter = ProductListAdapter(onItemClicked)
+        this.onItemClicked = onItemClicked
     }
 
     fun onBind(items: List<Product>) {
-        listAdapter.addItems(items)
         with(recyclerView) {
             layoutManager = GridLayoutManager(itemView.context, 3)
-            adapter = listAdapter
+            adapter = ProductListAdapter(items, onItemClicked)
         }
     }
 
