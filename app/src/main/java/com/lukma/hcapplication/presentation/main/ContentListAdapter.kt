@@ -4,6 +4,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.lukma.hcapplication.R
 import com.lukma.hcapplication.domain.content.Article
+import com.lukma.hcapplication.domain.content.HomeContent
 import com.lukma.hcapplication.domain.content.Product
 
 class ContentListAdapter(
@@ -14,12 +15,12 @@ class ContentListAdapter(
     private val products = mutableListOf<Product>()
     private val articles = mutableListOf<Article>()
 
-    fun submit(data: Pair<List<Product>, List<Article>>) {
+    fun submit(data: HomeContent) {
         products.clear()
         articles.clear()
 
-        products.addAll(data.first)
-        articles.addAll(data.second)
+        products.addAll(data.productSection.products)
+        articles.addAll(data.articleSection.articles)
 
         notifyDataSetChanged()
     }

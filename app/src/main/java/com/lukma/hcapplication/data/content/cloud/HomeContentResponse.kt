@@ -3,16 +3,21 @@ package com.lukma.hcapplication.data.content.cloud
 import com.squareup.moshi.Json
 
 data class HomeContentResponse(
-    val data: List<Content>?
+    val data: List<Section>?
 ) {
-    enum class Section(val value: String) {
+    enum class SectionType(val value: String) {
         PRODUCTS("products"),
         ARTICLES("articles")
     }
 
-    sealed class Content(val section: Section?) {
-        data class ProductContent(val items: List<Product>?) : Content(Section.PRODUCTS)
-        data class ArticleContent(val items: List<Article>?) : Content(Section.ARTICLES)
+    sealed class Section(val section: SectionType?) {
+        data class ProductSection(val items: List<Product>?) : Section(SectionType.PRODUCTS)
+        data class ArticleSection(
+            @Json(name = "section_title")
+            val title: String?,
+            @Json(name = "items")
+            val items: List<Article>?
+        ) : Section(SectionType.ARTICLES)
     }
 
     data class Product(
