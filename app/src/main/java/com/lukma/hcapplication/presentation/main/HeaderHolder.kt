@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.lukma.hcapplication.R
 import com.lukma.hcapplication.domain.content.Product
+import com.lukma.hcapplication.presentation.common.MarginItemDecoration
 import kotlinx.android.synthetic.main.main_header_item.view.*
 
 class HeaderHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,6 +21,12 @@ class HeaderHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun onBind(items: List<Product>) {
         with(recyclerView) {
             layoutManager = GridLayoutManager(itemView.context, 3)
+            addItemDecoration(
+                MarginItemDecoration(
+                    resources.getDimension(R.dimen.default_component_space_medium).toInt(),
+                    MarginItemDecoration.Mode.Grid(3)
+                )
+            )
             adapter = ProductListAdapter(items, onItemClicked)
         }
     }

@@ -8,6 +8,7 @@ import androidx.lifecycle.whenCreated
 import androidx.lifecycle.whenResumed
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.lukma.hcapplication.R
+import com.lukma.hcapplication.presentation.common.MarginItemDecoration
 import com.lukma.hcapplication.presentation.common.Resource
 import kotlinx.android.synthetic.main.main_activity.*
 import kotlinx.coroutines.launch
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.main_activity)
         with(recyclerView) {
             layoutManager = LinearLayoutManager(this@MainActivity)
+            addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_component_space_medium).toInt()))
             adapter = listAdapter
         }
     }
