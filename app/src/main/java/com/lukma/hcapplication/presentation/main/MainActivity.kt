@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
+import androidx.lifecycle.whenResumed
 import com.lukma.hcapplication.R
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -15,8 +16,10 @@ class MainActivity : AppCompatActivity() {
     init {
         lifecycleScope.launch {
             whenCreated {
-                viewModel.products.observe(this@MainActivity, Observer { })
-                viewModel.articles.observe(this@MainActivity, Observer { })
+                viewModel.homeContent.observe(this@MainActivity, Observer { })
+            }
+            whenResumed {
+                viewModel.getHomeContent()
             }
         }
     }
