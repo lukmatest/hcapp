@@ -15,6 +15,7 @@ class MainViewModel(private val getHomeContentUseCase: GetHomeContentUseCase) : 
     val content: LiveData<Resource<Pair<List<Product>, List<Article>>>> = contentMutable
 
     suspend fun getHomeContent() {
+        contentMutable.postValue(Resource.Loading)
         getHomeContentUseCase.invoke(viewModelScope.coroutineContext)
             .asResource()
             .run(contentMutable::postValue)

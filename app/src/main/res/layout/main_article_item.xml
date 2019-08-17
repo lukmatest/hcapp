@@ -20,8 +20,8 @@
             android:adjustViewBounds="true"
             android:minHeight="@dimen/default_thumbnail_height_medium"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="ContentDescription"
-            tools:src="@color/colorAccent" />
+            tools:background="@android:color/darker_gray"
+            tools:ignore="ContentDescription" />
 
         <ProgressBar
             android:id="@+id/progressBar"

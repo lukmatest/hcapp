@@ -2,6 +2,7 @@ package com.lukma.hcapplication.presentation.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.whenCreated
@@ -25,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             whenCreated {
                 viewModel.content.observe(this@MainActivity, Observer {
+                    progressBar.isVisible = it is Resource.Loading
                     when (it) {
                         is Resource.Success -> it.data.run(listAdapter::submit)
                     }
