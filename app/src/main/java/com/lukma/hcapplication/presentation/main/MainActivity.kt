@@ -1,7 +1,9 @@
 package com.lukma.hcapplication.presentation.main
 
+import android.net.Uri
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
@@ -19,8 +21,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class MainActivity : AppCompatActivity() {
     private val viewModel by viewModel<MainViewModel>()
     private val listAdapter = ContentListAdapter(
-        onProductItemClicked = {},
-        onArticleItemClicked = {}
+        onProductItemClicked = { openLink(it.link) },
+        onArticleItemClicked = { openLink(it.link) }
     )
 
     init {
@@ -50,5 +52,11 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_component_space_medium).toInt()))
             adapter = listAdapter
         }
+    }
+
+    private fun openLink(link: String) {
+        CustomTabsIntent.Builder()
+            .build()
+            .launchUrl(this, Uri.parse(link))
     }
 }
