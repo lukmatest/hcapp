@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity() {
         swipeRefresh.setOnRefreshListener {
             lifecycleScope.launch { viewModel.getHomeContent() }
         }
-        with(recyclerView) {
+        with(homeRecyclerView) {
             layoutManager = LinearLayoutManager(this@MainActivity)
             addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_component_space_medium).toInt()))
             adapter = listAdapter

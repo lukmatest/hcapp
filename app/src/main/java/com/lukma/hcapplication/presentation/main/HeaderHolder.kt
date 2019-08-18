@@ -11,14 +11,14 @@ import com.lukma.hcapplication.presentation.common.MarginItemDecoration
 import kotlinx.android.synthetic.main.main_header_item.view.*
 
 class HeaderHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val recyclerView = itemView.recyclerView
+    private val productRecyclerView = itemView.productRecyclerView
     private val sectionTextView = itemView.sectionTextView
 
     private lateinit var listAdapter: ProductListAdapter
 
     private fun onCreate(onItemClicked: (Product) -> Unit) {
         listAdapter = ProductListAdapter(onItemClicked)
-        with(recyclerView) {
+        with(productRecyclerView) {
             layoutManager = GridLayoutManager(itemView.context, 3)
             addItemDecoration(
                 MarginItemDecoration(
