@@ -8,6 +8,7 @@ buildscript {
             'espresso'         : '3.2.0',
             'koin'             : '2.0.1',
             'android_core'     : '1.0.2',
+            'android_core_test': '1.2.0',
             'android_appcompat': '1.1.0-rc01',
             'android_browser'  : '1.2.0-alpha07',
             'constraint_layout': '1.1.3',
