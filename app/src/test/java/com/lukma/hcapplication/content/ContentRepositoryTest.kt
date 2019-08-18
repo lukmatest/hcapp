@@ -20,7 +20,7 @@ class ContentRepositoryTest {
     lateinit var mockApi: ContentApi
 
     @Before
-    fun setUp() {
+    fun setup() {
         repository = ContentDataRepository(mockApi)
     }
 

@@ -27,8 +27,7 @@ import org.mockito.junit.MockitoJUnitRunner
 @RunWith(MockitoJUnitRunner::class)
 class ContentViewModelTest {
 
-    @Rule
-    @JvmField
+    @get:Rule
     val rule = InstantTaskExecutorRule()
 
     private lateinit var viewModel: MainViewModel
@@ -41,7 +40,7 @@ class ContentViewModelTest {
 
     @ExperimentalCoroutinesApi
     @Before
-    fun setUp() {
+    fun setup() {
         Dispatchers.setMain(Dispatchers.IO)
         viewModel = MainViewModel(GetHomeContentUseCase(mockRepository))
         viewModel.content.observeForever(observer)

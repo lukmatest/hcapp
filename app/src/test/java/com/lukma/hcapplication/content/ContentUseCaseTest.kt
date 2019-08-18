@@ -25,7 +25,7 @@ class ContentUseCaseTest {
     lateinit var mockRepository: ContentRepository
 
     @Before
-    fun setUp() {
+    fun setup() {
         useCase = GetHomeContentUseCase(mockRepository)
     }
 
